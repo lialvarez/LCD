@@ -19,7 +19,6 @@ HitachiLCD::HitachiLCD()
 	}
 }
 
-
 HitachiLCD::~HitachiLCD()
 {
 	FT_Close(&lcdHandler);
@@ -135,6 +134,8 @@ bool HitachiLCD::lcdClear()
 	return ret;
 }
 
+
+//TERMINAR
 bool HitachiLCD::lcdClearToEOL()
 {
 	bool ret = true;
