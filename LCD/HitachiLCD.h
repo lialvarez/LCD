@@ -10,7 +10,13 @@
 #define PORT_P6 6
 #define PORT_P7 7
 
-#define LCD_CLEAR	0x01
+#define LCD_CLEAR		0x01
+#define FUNCTION_SET_8	0x38
+#define FUNCTION_SET_4	0x28
+#define ENTRY_MODE_SET	0x06
+#define RETURN_HOME		0x02
+
+#define DISPLAY_CONTROL	0x08
 
 #define LCD_E	(1 << PORT_P0)
 #define LCD_RS	(1 << PORT_P1)
@@ -35,11 +41,16 @@ public:
 	HitachiLCD();
 	~HitachiLCD();
 	
+	FT_HANDLE * lcdInit(int iDevice);
 	bool lcdInitOk();
+	
+	void lcdWriteIR(FT_HANDLE * deviceHandler, UCHAR valor);
+	void lcdWriteDR(FT_HANDLE * deviceHandler, UCHAR valor);
 	FT_STATUS lcdGetError();
 	bool lcdSetCursorPosition(const cursorPosition pos);
 	bool lcdClear();
 	bool lcdClearToEOL();
+	basicLCD& operator<<(const unsigned char c);
 protected:
 	FT_STATUS lcdStatus;
 	FT_HANDLE lcdHandler;
