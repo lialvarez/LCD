@@ -23,9 +23,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="LCD.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="basicLCD.h">
       <Filter>Header Files</Filter>
     </ClInclude>

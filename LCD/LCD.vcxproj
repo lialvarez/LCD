@@ -151,7 +151,6 @@
   <ItemGroup>
     <ClInclude Include="basicLCD.h" />
     <ClInclude Include="HitachiLCD.h" />
-    <ClInclude Include="LCD.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
