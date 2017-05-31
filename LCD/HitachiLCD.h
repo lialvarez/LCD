@@ -45,10 +45,10 @@ public:
 	~HitachiLCD();
 
 	FT_HANDLE * lcdInit(int iDevice);
+	FT_STATUS lcdGetError();
 	bool lcdInitOk();
 	void lcdWriteIR(UCHAR valor);
 	void lcdWriteDR(UCHAR valor);
-	FT_STATUS lcdGetError();
 	bool lcdSetCursorPosition(const cursorPosition pos);
 	bool lcdClear();
 	bool lcdClearToEOL();
