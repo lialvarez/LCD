@@ -1,6 +1,7 @@
 #ifndef BASICLCD_H
 #define BASICLCD_H
 
+#include <windows.h>
 #include <ftd2xx.h>
 
 struct cursorPosition
@@ -20,7 +21,7 @@ public:
 	*
 	* cadd =1 (cursor address) (ver NOTA 1)
 	*=====================================================*/
-	basicLCD();
+	basicLCD() { cadd = 1; }
 	/*=====================================================
 	* Name: ~basicLCD
 	* Entra: -
@@ -28,7 +29,7 @@ public:
 	* que se hubiera tomado de forma de evitar
 	* "resources leak".
 	*=====================================================*/
-	~basicLCD();
+	//~basicLCD();
 	/*=====================================================
 	* Name: lcdInitOk
 	* Entra: -
@@ -93,7 +94,7 @@ public:
 	* basicLCD lcd;
 	* lcd << “Hola” << “ “ << “Mundo”;
 	*=====================================================*/
-	virtual basicLCD& operator<<(const unsigned char * c) = 0;
+	virtual basicLCD& operator<<(const char * c) = 0;
 	/*=====================================================
 	* Name: lcdMoveCursorUp
 	*

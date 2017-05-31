@@ -1,4 +1,7 @@
-#pragma once
+#ifndef HITACHILCD_H
+#define HITACHILCD_H
+
+#include <ftd2xx.h>
 #include "basicLCD.h"
 
 #define PORT_P0	0
@@ -16,7 +19,7 @@
 #define ENTRY_MODE_SET	0x06
 #define RETURN_HOME		0x02
 
-#define DISPLAY_CONTROL	0x08
+#define DISPLAY_CONTROL	0x0C
 
 #define LCD_E	(1 << PORT_P0)
 #define LCD_RS	(1 << PORT_P1)
@@ -40,20 +43,30 @@ class HitachiLCD :
 public:
 	HitachiLCD();
 	~HitachiLCD();
-	
+
 	FT_HANDLE * lcdInit(int iDevice);
 	bool lcdInitOk();
-	
-	void lcdWriteIR(FT_HANDLE * deviceHandler, UCHAR valor);
-	void lcdWriteDR(FT_HANDLE * deviceHandler, UCHAR valor);
+	void lcdWriteIR(UCHAR valor);
+	void lcdWriteDR(UCHAR valor);
 	FT_STATUS lcdGetError();
 	bool lcdSetCursorPosition(const cursorPosition pos);
 	bool lcdClear();
 	bool lcdClearToEOL();
+	bool lcdMoveCursorUp();
+	bool lcdMoveCursorDown();
+	bool lcdMoveCursorRight();
+	bool lcdMoveCursorLeft();
+	cursorPosition lcdGetCursorPosition();
 	basicLCD& operator<<(const unsigned char c);
+	basicLCD& operator<<(const char *c);
+	// Sobrecarga de operador >>
+	// Scrollea el texto ingresado hacia la izquierda
+	basicLCD& operator>>(const char *c);
+	void lcdPrintFront(const char *c, int line);
+	void lcdScrollText(const char *c, int line);
 protected:
 	FT_STATUS lcdStatus;
-	FT_HANDLE lcdHandler;
+	FT_HANDLE deviceHandler;
 	int deviceNumber;
 
 	void lcdUpdateCursor();
@@ -62,3 +75,5 @@ protected:
 
 };
 
+
+#endif // !HITACHILCD_H
