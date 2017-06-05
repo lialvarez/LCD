@@ -63,7 +63,7 @@ public:
 	// Scrollea el texto ingresado hacia la izquierda
 	basicLCD& operator>>(const char *c);
 	void lcdPrintFront(const char *c, int line);
-	void lcdScrollText(const char *c, int line);
+	void lcdScrollText(const char *c, int line, unsigned int speed);
 protected:
 	FT_STATUS lcdStatus;
 	FT_HANDLE deviceHandler;

@@ -312,8 +312,12 @@ void HitachiLCD::lcdPrintFront(const char *c, int line)
 	lcdUpdateCursor();
 }
 
-void HitachiLCD::lcdScrollText(const char *c, int line)
+void HitachiLCD::lcdScrollText(const char *c, int line, unsigned int speed)
 {
+	if (speed > 10)
+	{
+		speed = 10;
+	}
 	lcdUpdateCursor();
 	std::string msj(c);
 	std::string spaces = "               ";
@@ -322,7 +326,7 @@ void HitachiLCD::lcdScrollText(const char *c, int line)
 	{
 		std::string scroll = aux.substr(i);
 		lcdPrintFront(scroll.c_str(), line);
-		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		std::this_thread::sleep_for(std::chrono::milliseconds(10*speed));
 	}
 }
 
@@ -336,7 +340,7 @@ basicLCD& HitachiLCD::operator>>(const char *c)
 	{
 		std::string scroll = aux.substr(i);
 		lcdPrintFront(scroll.c_str(), 2);
-		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		std::this_thread::sleep_for(std::chrono::milliseconds(10));
 	}
 	return *this;
 }
